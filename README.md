@@ -50,7 +50,7 @@
 node --test tests/cli.test.mjs
 ```
 
-测试只启动本机模拟服务，使用临时账号和临时目录，不连接生产站点。GitHub Actions 在 Windows、macOS、Linux 的 Node 20/22 环境执行同一测试；通过仅代表脚本验证，不等同于各系统 WorkBuddy 客户端实测。
+测试只启动本机模拟服务，使用临时账号和临时目录，不连接生产站点。[v1.0.0 的六组检查已全部通过](https://github.com/cocoanut0315-star/workbuddy-skills/actions/runs/39046637594)：Windows、macOS、Linux × Node 20/22，覆盖脚本测试与发布打包。通过仅代表脚本验证，不等同于各系统 WorkBuddy 客户端实测。
 
 发布打包：
 
