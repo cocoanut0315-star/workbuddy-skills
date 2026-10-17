@@ -5,7 +5,7 @@ import hashlib
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
-FILES = ('SKILL.md', 'references/tools.md', 'scripts/workspace.mjs')
+FILES = ('SKILL.md', 'references/tools.md', 'scripts/workspace.mjs', 'LICENSE')
 
 def main():
     parser = argparse.ArgumentParser()
@@ -19,7 +19,8 @@ def main():
             info = ZipInfo('branch-official-import/' + relative, (2026, 10, 17, 0, 0, 0))
             info.compress_type = ZIP_DEFLATED
             info.external_attr = 0o100644 << 16
-            archive.writestr(info, (source / relative).read_bytes())
+            file = source.parents[1] / 'LICENSE' if relative == 'LICENSE' else source / relative
+            archive.writestr(info, file.read_bytes())
     with ZipFile(target) as archive:
         assert archive.testzip() is None
         assert set(archive.namelist()) == {'branch-official-import/' + f for f in FILES}

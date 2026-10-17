@@ -19,3 +19,4 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - run: node --test tests/cli.test.mjs
+      - run: python scripts/package.py --output dist
