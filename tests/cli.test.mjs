@@ -145,6 +145,9 @@ test('browser login, PKCE, concurrent refresh and Chinese input work through rea
   const input = join(f.home, '中文 参数.json');
   await writeFile(input, JSON.stringify({query:'石家庄 长安区'}), 'utf8');
   assert.equal((await f.cli('call','search_branches','--input',input)).query, '石家庄 长安区');
+  await writeFile(input, JSON.stringify({branchIds:['synthetic-branch'],apply:false,preferMapAddress:true}), 'utf8');
+  await f.cli('call','locate_branches','--input',input);
+  assert.deepEqual(f.state.calls.at(-1), {name:'locate_branches',arguments:{branchIds:['synthetic-branch'],apply:false,preferMapAddress:true}});
   assert.equal((await f.cli('logout')).disconnected, true);
   assert.equal(f.state.revoked, true);
   assert.equal((await f.cli('status')).connectedLocally, false);

@@ -14,7 +14,7 @@ if(base!==production&&!/^http:\/\/127\.0\.0\.1:\d+(?:\/map)?$/.test(base))throw 
 const directory=process.env.WANGDIAN_HOME?resolve(process.env.WANGDIAN_HOME):join(homedir(),'.wangdian-workspace');
 const credentialFile=join(directory,'credentials.json'),pendingFile=join(directory,'pending.json');
 const lockDirectory=join(directory,'connection.lock');
-const tools=new Set(['list_official_banks','read_official_page','search_branches','prepare_branch_import','commit_branch_import','list_imports','undo_branch_import']);
+const tools=new Set(['list_official_banks','read_official_page','search_branches','prepare_branch_import','commit_branch_import','list_imports','undo_branch_import','locate_branches']);
 const output=value=>process.stdout.write(JSON.stringify(value)+'\n');
 const random=()=>randomBytes(32).toString('base64url');
 async function read(path){try{return JSON.parse(await readFile(path,'utf8'));}catch(e){if(e.code==='ENOENT')return null;throw Error('本机连接信息无法读取，请重新连接。');}}
